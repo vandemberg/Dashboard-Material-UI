@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   TextField,
@@ -10,17 +10,15 @@ import {
 import { Filter, Payments } from "./styles";
 import PaymentCard from "../PaymentCard/PaymentCard";
 
-const customer = {
-  name: "Vandemberg Lima",
-  phone: "(81) 9 9696-1947",
-  dueDate: "15/01/2021",
-  product: "DVD panasonic 3 em 1",
-  totalPayment: 12,
-  currentPayment: 1,
-  cost: 25.0,
-};
+import paymentData from "./data.json";
 
 function PaymentsPage() {
+  const [payments, setPayments] = useState([]);
+
+  useEffect(() => {
+    setPayments(paymentData);
+  }, []);
+
   return (
     <>
       <Filter>
@@ -46,29 +44,11 @@ function PaymentsPage() {
         </Tabs>
 
         <List>
-          <ListItem>
-            <PaymentCard customer={{ ...customer }} />
-          </ListItem>
-
-          <ListItem>
-            <PaymentCard customer={{ ...customer }} />
-          </ListItem>
-
-          <ListItem>
-            <PaymentCard customer={{ ...customer }} />
-          </ListItem>
-
-          <ListItem>
-            <PaymentCard customer={{ ...customer }} />
-          </ListItem>
-
-          <ListItem>
-            <PaymentCard customer={{ ...customer }} />
-          </ListItem>
-
-          <ListItem>
-            <PaymentCard customer={{ ...customer }} />
-          </ListItem>
+          {payments.map((value, index) => (
+            <ListItem key={index}>
+              <PaymentCard customer={{ ...value }} />
+            </ListItem>
+          ))}
         </List>
       </Payments>
     </>
