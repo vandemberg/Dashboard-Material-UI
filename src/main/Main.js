@@ -15,7 +15,7 @@ function Main() {
 
       <Switch>
         <Route path="/" exact component={() => <Redirect to="/app" />} />
-        <Route path="/app" exact component={() => <App />} />
+        <Route path="/app" component={() => <App />} />
       </Switch>
     </Router>
   );
