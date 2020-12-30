@@ -1,16 +1,24 @@
+import React from "react";
 import {
   Button,
-  CardActions,
-  CardContent,
   TextField,
   List,
   ListItem,
   Tab,
   Tabs,
-  Typography,
 } from "@material-ui/core";
-import React from "react";
-import { Filter, Payment, Payments } from "./styles";
+import { Filter, Payments } from "./styles";
+import PaymentCard from "../PaymentCard/PaymentCard";
+
+const customer = {
+  name: "Vandemberg Lima",
+  phone: "(81) 9 9696-1947",
+  dueDate: "15/01/2021",
+  product: "DVD panasonic 3 em 1",
+  totalPayment: 12,
+  currentPayment: 1,
+  cost: 25.0,
+};
 
 function PaymentsPage() {
   return (
@@ -39,28 +47,27 @@ function PaymentsPage() {
 
         <List>
           <ListItem>
-            <Payment>
-              <CardContent>
-                <Typography color="textSecondary" gutterBottom>
-                  Vandemberg Silva Lima // (81) - 996961947
-                  <span style={{ float: "right" }}>31/01/2021</span>
-                </Typography>
+            <PaymentCard customer={{ ...customer }} />
+          </ListItem>
 
-                <Typography variant="body2" component="p">
-                  DVD Panasonic 3 em 1
-                </Typography>
+          <ListItem>
+            <PaymentCard customer={{ ...customer }} />
+          </ListItem>
 
-                <Typography variant="body2" component="p">
-                  Parcela 1/10
-                </Typography>
-              </CardContent>
+          <ListItem>
+            <PaymentCard customer={{ ...customer }} />
+          </ListItem>
 
-              <CardActions>
-                <Button variant="contained" color="inherit" size="large">
-                  Expandir
-                </Button>
-              </CardActions>
-            </Payment>
+          <ListItem>
+            <PaymentCard customer={{ ...customer }} />
+          </ListItem>
+
+          <ListItem>
+            <PaymentCard customer={{ ...customer }} />
+          </ListItem>
+
+          <ListItem>
+            <PaymentCard customer={{ ...customer }} />
           </ListItem>
         </List>
       </Payments>
