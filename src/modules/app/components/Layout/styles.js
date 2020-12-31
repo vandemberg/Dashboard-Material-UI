@@ -1,5 +1,4 @@
-import { AppBar, Avatar, Card, Drawer } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { AppBar, Avatar, Button, Drawer } from "@material-ui/core";
 import styled from "styled-components";
 
 export const Header = styled(AppBar)`
@@ -27,12 +26,16 @@ export const AvatarProfile = styled(Avatar)`
   height: 25px;
 `;
 
-export const Logout = styled(Link)`
+export const Logout = styled(Button)`
   font-size: 16px;
   margin-left: 20px;
   margin-right: 35px;
   color: #fff;
   text-decoration: none;
+
+  span {
+    color: #fff;
+  }
 `;
 
 export const Logo = styled.img`

@@ -1,11 +1,16 @@
 import React from "react";
 
-import { Main } from "./styles";
+import { Main } from "./global";
 import { Route, Switch } from "react-router-dom";
 import { Payments } from "./components/Payments";
 import { Layout } from "./components/Layout";
+import { NewOrder } from "./components/NewOrder";
+
+import { usePrivateRoute } from "../authentication";
 
 function App() {
+  usePrivateRoute();
+
   return (
     <>
       <Layout>
@@ -17,7 +22,9 @@ function App() {
               exact
               component={() => <h1> customers </h1>}
             />
-            <Route path="/app/users" exact component={() => <div></div>} />
+
+            <Route path="/app/order" exact component={() => <NewOrder />} />
+
             <Route path="/app/whatsapp" exact component={() => <div />} />
           </Switch>
         </Main>

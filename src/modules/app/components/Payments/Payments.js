@@ -37,8 +37,12 @@ function PaymentsPage() {
       </Filter>
 
       <Payments>
-        <Tabs aria-label="simple tabs example" style={{ width: "100%" }}>
-          <Tab className="active" label="PRÓXIMAS" />
+        <Tabs
+          value={0}
+          aria-label="simple tabs example"
+          style={{ width: "100%" }}
+        >
+          <Tab label="PRÓXIMAS" />
           <Tab label="PENDENTE" />
           <Tab label="TODAS" />
         </Tabs>

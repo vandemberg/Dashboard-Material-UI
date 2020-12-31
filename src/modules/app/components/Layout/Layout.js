@@ -1,4 +1,5 @@
 import {
+  Button,
   Divider,
   List,
   ListItem,
@@ -6,13 +7,13 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useAuthentication } from "../../../authentication";
+import { Link, useHistory } from "react-router-dom";
 
 import {
   AccountBox,
   WhatsApp,
   Payment as PaymentIcon,
-  Person,
 } from "@material-ui/icons";
 
 import {
@@ -24,23 +25,43 @@ import {
   SideBar,
 } from "./styles";
 
-import logo from "./../../assets/images/logo.png";
+import logo from "../../assets/images/logo.png";
 
 function Layout({ children }) {
+  const { logout, username } = useAuthentication();
+  const history = useHistory();
+
+  async function handleLogout() {
+    await logout();
+
+    history.push("/auth");
+  }
+
   return (
     <>
       <Header position="fixed">
         <HeaderProfile>
           <AvatarProfile>
-            <span style={{ fontSize: 16 }}>V</span>
+            <span style={{ fontSize: 16 }}>{username[0]}</span>
           </AvatarProfile>
-          <Logout to="#">Sair</Logout>
+          <Logout onClick={handleLogout}>Sair</Logout>
         </HeaderProfile>
       </Header>
 
       <SideBar variant="permanent" anchor="left" open={true}>
-        <Link to="#">
+        <Link to="/app">
           <Logo src={logo} alt="Frey House" />
+        </Link>
+
+        <Divider />
+
+        <Link
+          to="/app/order"
+          style={{ textDecoration: "none", fontWeight: "bold" }}
+        >
+          <Button variant="contained" color="default">
+            GERAR NOVA VENDA
+          </Button>
         </Link>
 
         <Divider />
@@ -60,15 +81,6 @@ function Layout({ children }) {
               <ListItemIcon>
                 <AccountBox />
                 <ListItemText primary="Clientes" />
-              </ListItemIcon>
-            </Link>
-          </ListItem>
-
-          <ListItem button>
-            <Link to="/app/users">
-              <ListItemIcon>
-                <Person />
-                <ListItemText primary="Usuários" />
               </ListItemIcon>
             </Link>
           </ListItem>
