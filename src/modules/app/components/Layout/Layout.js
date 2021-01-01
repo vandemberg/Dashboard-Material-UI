@@ -42,7 +42,7 @@ function Layout({ children }) {
       <Header position="fixed">
         <HeaderProfile>
           <AvatarProfile>
-            <span style={{ fontSize: 16 }}>{username[0]}</span>
+            <span style={{ fontSize: 16 }}>{username && username[0]}</span>
           </AvatarProfile>
           <Logout onClick={handleLogout}>Sair</Logout>
         </HeaderProfile>

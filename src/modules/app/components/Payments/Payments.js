@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { api } from "../../../../services";
 import {
   Button,
   TextField,
   List,
   ListItem,
-  Tab,
-  Tabs,
+  Typography,
+  Paper,
 } from "@material-ui/core";
 import { Filter, Payments } from "./styles";
 import PaymentCard from "../PaymentCard/PaymentCard";
@@ -16,7 +17,9 @@ function PaymentsPage() {
   const [payments, setPayments] = useState([]);
 
   useEffect(() => {
-    setPayments(paymentData);
+    api.get("payments").then((result) => {
+      setPayments(result.data);
+    });
   }, []);
 
   return (
@@ -36,25 +39,23 @@ function PaymentsPage() {
         </Button>
       </Filter>
 
-      <Payments>
-        <Tabs
-          value={0}
-          aria-label="simple tabs example"
-          style={{ width: "100%" }}
-        >
-          <Tab label="PRÓXIMAS" />
-          <Tab label="PENDENTE" />
-          <Tab label="TODAS" />
-        </Tabs>
-
-        <List>
-          {payments.map((value, index) => (
-            <ListItem key={index}>
-              <PaymentCard customer={{ ...value }} />
-            </ListItem>
-          ))}
-        </List>
-      </Payments>
+      <Paper variant="elevation">
+        <Payments>
+          <Typography
+            style={{ textAlign: "center", marginBottom: "20px" }}
+            variant="h4"
+          >
+            Pagamentos a serem realizados
+          </Typography>
+          <List>
+            {payments.map((value, index) => (
+              <ListItem key={index}>
+                <PaymentCard customer={{ ...value }} />
+              </ListItem>
+            ))}
+          </List>
+        </Payments>
+      </Paper>
     </>
   );
 }

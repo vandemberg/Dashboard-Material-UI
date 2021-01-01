@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
+import moment from "moment";
 import { Payment } from "../Payments/styles";
 
 function PaymentCard({ customer }) {
@@ -15,8 +16,8 @@ function PaymentCard({ customer }) {
     totalPayment,
     currentPayment,
     product,
-    dueDate,
-    cost,
+    pay_day,
+    total,
   } = customer;
 
   const [expand, setExpand] = useState(false);
@@ -26,7 +27,7 @@ function PaymentCard({ customer }) {
       <CardContent>
         <Typography color="textSecondary" gutterBottom>
           {`${name} // ${phone}`}
-          <span style={{ float: "right" }}>{dueDate}</span>
+          <span style={{ float: "right" }}>{pay_day}</span>
         </Typography>
 
         <Typography variant="body2" component="p">
@@ -38,7 +39,7 @@ function PaymentCard({ customer }) {
         </Typography>
 
         <Typography variant="body2" component="p">
-          {`Valor ${cost}`}
+          {`Valor ${total}`}
         </Typography>
       </CardContent>
 

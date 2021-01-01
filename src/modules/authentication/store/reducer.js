@@ -26,7 +26,7 @@ export const defaultState = (() => {
   const payload = JSON.parse(window.localStorage.getItem("authentication"));
 
   if (payload && payload.token) {
-    api.defaults.headers.post["Authorization"] = payload.token;
+    api.defaults.headers.common["Authorization"] = payload.token;
   }
 
   return {

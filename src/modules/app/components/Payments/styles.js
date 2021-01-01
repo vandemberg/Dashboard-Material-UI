@@ -12,14 +12,10 @@ export const Filter = styled.section`
 `;
 
 export const Payments = styled.section`
+  padding: 20px;
   display: flex;
   flex: 1;
   flex-direction: column;
-
-  .active {
-    color: var(--primary);
-    text-decoration: underline;
-  }
 `;
 
 export const Payment = styled(Card)`
