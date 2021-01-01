@@ -11,8 +11,6 @@ import {
 import { Filter, Payments } from "./styles";
 import PaymentCard from "../PaymentCard/PaymentCard";
 
-import paymentData from "./data.json";
-
 function PaymentsPage() {
   const [payments, setPayments] = useState([]);
 
@@ -39,7 +37,7 @@ function PaymentsPage() {
         </Button>
       </Filter>
 
-      <Paper variant="elevation">
+      <Paper variant="outlined">
         <Payments>
           <Typography
             style={{ textAlign: "center", marginBottom: "20px" }}
@@ -50,7 +48,7 @@ function PaymentsPage() {
           <List>
             {payments.map((value, index) => (
               <ListItem key={index}>
-                <PaymentCard customer={{ ...value }} />
+                <PaymentCard payment={{ ...value }} />
               </ListItem>
             ))}
           </List>

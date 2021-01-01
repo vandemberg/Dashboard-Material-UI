@@ -7,18 +7,21 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import moment from "moment";
+import "moment/locale/pt-br";
 import { Payment } from "../Payments/styles";
 
-function PaymentCard({ customer }) {
+moment.locale("pt-br");
+
+function PaymentCard({ payment }) {
   const {
     name,
     phone,
-    totalPayment,
-    currentPayment,
     product,
     pay_day,
     total,
-  } = customer;
+    pieces,
+    number_piece,
+  } = payment;
 
   const [expand, setExpand] = useState(false);
 
@@ -27,7 +30,9 @@ function PaymentCard({ customer }) {
       <CardContent>
         <Typography color="textSecondary" gutterBottom>
           {`${name} // ${phone}`}
-          <span style={{ float: "right" }}>{pay_day}</span>
+          <span style={{ float: "right" }}>
+            {moment(pay_day, "YYYY-MM-DD").fromNow()}
+          </span>
         </Typography>
 
         <Typography variant="body2" component="p">
@@ -35,7 +40,7 @@ function PaymentCard({ customer }) {
         </Typography>
 
         <Typography variant="body2" component="p">
-          {`Parcela ${currentPayment}/${totalPayment}`}
+          {`Parcela ${number_piece + 1}/${pieces}`}
         </Typography>
 
         <Typography variant="body2" component="p">
